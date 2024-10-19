@@ -20,6 +20,7 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
             "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png",
         }}
         style={styles.image}
+        resizeMode="contain"
       />
 
       <Text style={styles.title}>{product.name}</Text>
@@ -35,6 +36,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 10,
     borderRadius: 20,
+    flex: 1,
+    maxWidth: "50%",
+    //margin: 10,
   },
   image: {
     width: "100%",
