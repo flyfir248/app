@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import products from "@assets/data/products";
 import { defaultPizzaImage } from "@/components/ProductListItem";
 import { useState } from "react";
+import Button from "@/components/Button";
 
 const sizes = ["S", "M", "L", "XL"];
 
@@ -12,6 +13,10 @@ const ProductDetailsScreem = () => {
   const [selectedSize, setSelectedSize] = useState("M");
 
   const product = products.find((p) => p.id.toString() === id);
+
+  const addToCart = () => {
+    console.warn("Adding to cart, size :", selectedSize);
+  };
 
   if (!product) {
     return <Text> Product Not Found... :( </Text>;
@@ -50,6 +55,7 @@ const ProductDetailsScreem = () => {
       </View>
 
       <Text style={styles.price}>${product.price}</Text>
+      <Button onPress={addToCart} text="Add to cart" />
     </View>
   );
 };
@@ -67,6 +73,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 18,
     fontWeight: "bold",
+    marginTop: "auto",
   },
 
   sizes: {
