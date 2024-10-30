@@ -53,6 +53,7 @@ const CartProvider = ({ children }: PropsWithChildren) => {
             ? item
             : { ...item, quantity: item.quantity + amount }
         )
+
         .filter((item) => item.quantity > 0)
     );
   };

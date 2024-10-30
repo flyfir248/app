@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 import Colors from "../constants/Colors";
 import { Product } from "../types";
-import { Link } from "expo-router";
+import { Link, useSegments } from "expo-router";
 
 export const defaultPizzaImage =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
@@ -15,8 +15,12 @@ const ProductListItem = ({ product }: ProductListItemProps) => {
   // Such safe types allow for users and other programmers to prevent and know what type is to be used...
   //
   //console.log(props);
+
+  const segments = useSegments();
+  //console.log(segments);
+
   return (
-    <Link href={`/(tabs)/menu/${product.id}`} asChild>
+    <Link href={`/${segments[0]}/menu/${product.id}`} asChild>
       <Pressable style={styles.container}>
         <Image
           source={{
