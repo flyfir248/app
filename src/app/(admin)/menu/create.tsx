@@ -4,7 +4,7 @@ import Colors from "../../../constants/Colors";
 import Button from "../../../components/Button";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
-import { Stack } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 
 const defaultPizzaImage =
   "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
@@ -14,6 +14,14 @@ const CreateScreen = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState("");
+
+  const { id } = useLocalSearchParams();
+  const isUpdating = !!id;
+
+  const resetFields = () => {
+    setName("");
+    setPrice("");
+  };
 
   const router = useRouter();
 
@@ -34,16 +42,41 @@ const CreateScreen = () => {
     return true;
   };
 
+  const onSubmit = () => {
+    if (isUpdating) {
+      //update
+      onUpdateCreate();
+    } else {
+      onCreate();
+    }
+  };
+
   const onCreate = () => {
     if (!validateInput()) {
       return;
     }
 
-    console.warn("Creating dish");
-    setName("");
-    setPrice("");
-    setImage("");
-    router.back();
+    console.warn("Creating product : ", name);
+    //setName("");
+    //setPrice("");
+    //setImage("");
+    //router.back();
+
+    resetFields();
+  };
+
+  const onUpdateCreate = () => {
+    if (!validateInput()) {
+      return;
+    }
+
+    console.warn("Updating product : ");
+    //setName("");
+    //setPrice("");
+    //setImage("");
+    //router.back();
+
+    resetFields();
   };
 
   const pickImage = async () => {
@@ -90,7 +123,7 @@ const CreateScreen = () => {
         keyboardType="numeric"
       />
       <Text style={styles.error}>{errors}</Text>
-      <Button onPress={onCreate} text="Create" />
+      <Button onPress={onSubmit} text={isUpdating ? "Update" : "Create"} />
     </View>
   );
 };
