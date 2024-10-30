@@ -4,7 +4,10 @@ import Colors from "../../../constants/Colors";
 import Button from "../../../components/Button";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
-//export const defaultPizzaImage = "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
+import { Stack } from "expo-router";
+
+const defaultPizzaImage =
+  "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 
 const CreateScreen = () => {
   const [image, setImage] = useState<string | null>(null);
@@ -60,6 +63,7 @@ const CreateScreen = () => {
   };
   return (
     <View style={styles.container}>
+      <Stack.Screen options={{ title: "Create Product" }} />
       <Image
         source={{ uri: image || defaultPizzaImage }}
         style={styles.image}
