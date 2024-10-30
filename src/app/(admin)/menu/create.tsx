@@ -4,8 +4,7 @@ import Colors from "../../../constants/Colors";
 import Button from "../../../components/Button";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
-export const defaultPizzaImage =
-  "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
+//export const defaultPizzaImage = "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 
 const CreateScreen = () => {
   const [image, setImage] = useState<string | null>(null);
